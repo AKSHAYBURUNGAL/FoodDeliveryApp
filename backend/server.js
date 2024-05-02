@@ -6,7 +6,7 @@ import foodRouter from "./routes/foodRoute.js"
 import 'dotenv/config'
 import cartRouter from "./routes/cartRoute.js"
 import orderRouter from "./routes/orderRoute.js"
-
+import path from 'path'
 // app config
 const app = express()
 const port = 4000 || process.env.port
@@ -15,6 +15,10 @@ const port = 4000 || process.env.port
 // middlewares
 app.use(express.json())
 app.use(cors())
+
+const _dirname = path.dirname("")
+const buildpath = path.join(_dirname,"../frontend/dist")
+app.use(express.static(buildpath));
 
 // db connection
 connectDB()
